@@ -1,8 +1,8 @@
 import asyncio
 from pathlib import Path
 import streamlit as st
-from modules.scraper import parse_event_page, get_next_event, update_database
-from modules.database import Database
+from app.modules.scraper import parse_event_page, get_next_event, update_database
+from app.modules.database import Database
 
 # Paths
 BASE_DIR = Path(__file__).parent
@@ -26,18 +26,10 @@ def get_event_data():
 RECENT_EVENT_URL, UFC_EVENT_DATA = get_event_data()
 
 
-async def update_database(event: dict):
-    db_event = {
-        'url': event['url'],  # Note: changed from event_url to url
-        'fights': list()
-    }
-    await db.insert_event(db_event)
-
-
 async def check_and_update_db():
     event = await db.get_event(RECENT_EVENT_URL)
     if not event:
-        await update_database(UFC_EVENT_DATA)
+        await update_database(db, UFC_EVENT_DATA)
 
 # Run the async function
 asyncio.run(check_and_update_db())

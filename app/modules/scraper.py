@@ -4,7 +4,7 @@ import random
 import pprint
 from bs4 import BeautifulSoup
 from app.modules.web_classes.ufc_event_classes import CATEGORY_ID, BROADCAST_TIME, EVENT_CLASS, FIGHT, FIGHT_PROPERTIES, ODDS_PROPERTIES
-from app.modules.database import db
+from app.modules.database import Database
 
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
@@ -179,18 +179,19 @@ def parse_event_page(event_number: int = None, event_url: str = None, dev_mode: 
     return event
 
 
-async def update_database(event: dict):
+async def update_database(db: Database, event: dict):
     db_event = {
-        'url': event['event_url'],
+        'url': event['url'],
         'fights': list()
     }
-
-    await db.insert_event(db_event)
 
     for card, data in event.items():
         if 'url' not in card:
             for fight in data.get('data', []):
-                await db.insert_fight(fight)
+                db_event['fights'].append(await db.insert_fight(fight))
+
+    await db.insert_event(db_event)
+    return db_event
 
 if __name__ == '__main__':
     get_next_event()
