@@ -7,6 +7,9 @@ cursor_instructions.md
 ### MongoDB ###
 app/modules/database
 
+### Workspace ###
+fight_goblin.code-workspace
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
