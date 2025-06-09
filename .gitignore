@@ -4,6 +4,9 @@
 ### Cursor ###
 cursor_instructions.md
 
+### MongoDB ###
+app/modules/database
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -12,7 +12,9 @@ dependencies = [
     "langchain-google>=0.1.1",
     "langchain-google-genai>=2.1.5",
     "langchain-openai>=0.3.18",
+    "nicegui>=2.19.0",
     "numpy>=2.2.6",
     "pandas>=2.2.3",
+    "pymongo>=4.13.0",
     "streamlit>=1.45.1",
 ]
