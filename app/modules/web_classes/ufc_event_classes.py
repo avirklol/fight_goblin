@@ -1,6 +1,27 @@
-PAGE_ID = 'l-page__main'  # Get id
-PAGE_CLASS = 'l-main__content'  # Get class
+"""
+UFC Event Classes
+--------------------------------
+Classes for the UFC event parent and children pages.
+
+ENDPOINTS:
+- https://www.ufc.com/events
+- https://www.ufc.com/event/ufc-<event_number>
+- https://www.ufc.com/event/ufc-fight-night-<month-DD-YYYY>
+"""
+
+# UFC EVENT
+
+EVENT_CLASS = {
+    'container': 'l-listing__item',
+    'url': {
+        'container': 'c-card-event--result__logo',
+        'tag': 'a'  # Get href
+    }
+}
+
 FIGHT_CARD = 'fight-card'  # Get class
+
+# CARD
 
 CATEGORY_ID = {
     'main': 'main-card',  # Get id
@@ -16,7 +37,7 @@ CATEGORY_CLASS = {
 
 BROADCAST_TIME = 'c-event-fight-card-broadcaster__time'  # Get text
 
-# Fight
+# FIGHT
 
 FIGHT = 'l-listing__item'
 
